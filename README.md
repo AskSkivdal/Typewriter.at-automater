@@ -1,3 +1,13 @@
 # Typewriter.to-automater
 
-Remember to add chrome webdriver at the same path as the main.py file
+Currently only works with chrome
+
+# First run
+```
+pip install -r requirements.txt
+```
+
+# When you want to start it
+
+Fill out the strings in the file labled Username and password with your username and password
+and then run the main.py file to start
