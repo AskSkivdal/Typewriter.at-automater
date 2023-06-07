@@ -1,14 +1,38 @@
+default_config = """
+user_username = "username"
+user_password = "password123"
+waittimebetweenletters = 0.001
+dorandomshit = True
+minrandomaddwait = 0.05
+maxrandomaddwait = 0.15
+loadwait = 5
+mistakepercentage = 0.005
+"""
+
+from os import path
+if not path.isfile(".env"):
+    with open(".env", "w") as f:
+        f.write(default_config)
+        print("Config created please change it")
+        exit()
+
+
+
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 # Login details
-username = ""
-password = ""
+username = os.environ.get("user_username")
+password = os.environ.get("user_password")
 
 # Config options
-waitTimeBetweenLetters = 0.001
-do_random_shit = True
-min_random_add_wait = 0.05
-max_random_add_wait = 0.15
-loadWait = 5
-mistake_percentage = 0.005
+waitTimeBetweenLetters = float(os.environ.get("waittimebetweenletters"))
+do_random_shit = bool(os.environ.get("dorandomshit"))
+min_random_add_wait = float(os.environ.get("minrandomaddwait"))
+max_random_add_wait = float(os.environ.get("maxrandomaddwait"))
+loadWait = float(os.environ.get("loadwait"))
+mistake_percentage = float(os.environ.get("mistakepercentage"))
 
 
 
@@ -51,9 +75,9 @@ sleep(0.25)
 while True:
     try:
         # Find the current letter
-        currentLetter = driver.find_element(By.ID, "actualLetter").get_attribute('innerHTML')
+        currentLetter = driver.find_element(By.CSS_SELECTOR, "#text_todo > span").get_attribute('innerHTML')
         try:
-            remainingText = driver.find_element(By.ID, "remainingText").get_attribute('innerHTML')
+            remainingText = driver.find_element(By.CSS_SELECTOR, "#text_todo > span:nth-of-type(2)").get_attribute('innerHTML')
         except:
             remainingText = ""
         
