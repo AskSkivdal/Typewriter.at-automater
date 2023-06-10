@@ -97,8 +97,10 @@ while True:
             else: idx = 0
             actions.send_keys(to_type[0])\
                 .pause(waitTimeBetweenLetters+get_random_pause())
-        
-        actions.send_keys(to_type[i])\
-            .pause(waitTimeBetweenLetters+get_random_pause())
+        else:
+           actions.send_keys(to_type[i])\
+                .pause(waitTimeBetweenLetters+get_random_pause())
     
     actions.perform()
+
+input()
